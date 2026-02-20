@@ -10,79 +10,19 @@ layout: default
       </a>
       <h1 class="profile-name">{{ page.name }}</h1>
       <p class="profile-bio">{{ page.subtitle }}</p>
-      {% if page.github_username %} {%- include github_follow_button.html -%} {%
+      {% assign github_link = page.social | where: "title", "github" | first %}
+      {% if github_link %} {%- include github_follow_button.html -%} {%
       endif %}
 
+      {% if page.social %}
       <p class="profile-links">
-        {% if page.twitter_username %}
-        <a
-          class="social-link"
-          href="http://twitter.com/{{ page.twitter_username }}"
-        >
-          <i class="fab fa-twitter"></i>
+        {% for network in page.social %}
+        <a class="social-link" href="{{ network.url }}" target="_blank">
+          <i class="fab fa-{{ network.title }}"></i>
         </a>
-        {% endif %} {% if page.facebook_username %}
-        <a
-          class="social-link"
-          href="http://facebook.com/{{ page.facebook_username }}"
-        >
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        {% endif %} {% if page.instagram_username %}
-        <a
-          class="social-link"
-          href="http://instagram.com/{{ page.instagram_username }}"
-        >
-          <i class="fab fa-instagram"></i>
-        </a>
-        {% endif %} {% if page.medium_username %}
-        <a
-          class="social-link"
-          href="http://medium.com/@{{ page.medium_username }}"
-        >
-          <i class="fab fa-medium-m"></i>
-        </a>
-        {% endif %} {% if page.github_username %}
-        <a
-          class="social-link"
-          href="http://github.com/{{ page.github_username }}"
-        >
-          <i class="fab fa-github"></i>
-        </a>
-        {% endif %} {% if page.behance_username %}
-        <a
-          class="social-link"
-          href="http://behance.net/{{ page.behance_username }}"
-        >
-          <i class="fab fa-behance"></i>
-        </a>
-        {% endif %} {% if page.linkedin_username %}
-        <a
-          class="social-link"
-          href="http://linkedin.com/in/{{ page.linkedin_username }}"
-        >
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        {% endif %} {% if page.telegram_username %}
-        <a class="social-link" href="http://t.me/{{ page.telegram_username }}">
-          <i class="fab fa-telegram-plane"></i>
-        </a>
-        {% endif %} {% if page.dribbble_username %}
-        <a
-          class="social-link"
-          href="https://dribbble.com/{{ page.dribbble_username }}"
-        >
-          <i class="fab fa-dribbble"></i>
-        </a>
-        {% endif %} {% if page.flickr_username %}
-        <a
-          class="social-link"
-          href="https://www.flickr.com/photos/{{ page.flickr_username }}"
-        >
-          <i class="fab fa-flickr"></i>
-        </a>
-        {% endif %}
+        {% endfor %}
       </p>
+      {% endif %}
 
       {% if page.location %}
       <h6><a href="https://www.google.com/maps/search/?api=1&query={{ page.location }}" class="social-link"><i class="fas fa-map-marker-alt"></i> {{ page.location }}</a></h6>

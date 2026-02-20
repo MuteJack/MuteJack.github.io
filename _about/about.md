@@ -12,14 +12,28 @@ location: Republic of Korea
 website_url: "https://blog.naver.com/coldman1224"
 
 # social links
-github_username: MuteJack
-# twitter_username: xplor4r
-# instagram_username: xplor4r
-# facebook_username: johndoe
-# linkedin_username: johndoe
-# behance_username: johndoe
-# medium_username: johndoe
-# telegram_username: johndoe
-# dribbble_username: johndoe
-# flickr_username: johndoe
+social:
+  - title: "github"
+    url: "https://github.com/MuteJack"
+  - title: "youtube"
+    url: "https://www.youtube.com/@Mute_Jack"
+
+  # - title: "linkedin"
+  #   url: "https://www.linkedin.com/in/johndoe"
+  # - title: "facebook"
+  #   url: "https://www.facebook.com/johndoe"
+  # - title: "twitter"
+  #   url: "https://www.twitter.com/johndoe"
+  # - title: "behance"
+  #   url: "https://behance.com/johndoe"
+  # - title: "instagram"
+  #   url: "https://instagram.com/johndoe"
+  # - title: "medium"
+  #   url: "https://medium.com/johndoe"
+  # - title: "telegram"
+  #   url: "https://telegram.com/johndoe"
+  # - title: "dribbble"
+  #   url: "https://dribbble.com/johndoe"
+  # - title: "flickr"
+  #   url: "https://flickr.com/johndoe"
 ---
