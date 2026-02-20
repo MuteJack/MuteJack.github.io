@@ -1,5 +1,6 @@
 <ul>
-    {% for author in site.authors %}
+    {% assign sorted_authors = site.authors | sort: "order" %}
+    {% for author in sorted_authors %}
         <li>
             <a href="/blog/authors/{{ author.username }}">{{ author.name }}</a>
         </li>

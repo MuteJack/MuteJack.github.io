@@ -2,7 +2,7 @@
 layout: post
 title:  "Mycopsychosys: Remastered - Unofficial Patch Released"
 summary: "Intro Video & Korean Translation Unofficial Patch for Mycopsychosys: Remastered"
-author: Mute_Jack
+author: mutejack
 date: '2026-01-31 09:35:23 +0900'
 category: ['Mod','Translation']
 tags: Translation

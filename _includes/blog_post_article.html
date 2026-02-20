@@ -1,3 +1,4 @@
+{% assign author = site.authors | where: "username", page.author | first %}
 <article class="card" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="card-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
@@ -5,7 +6,7 @@
     <p class="post-summary">
       Posted by : {% if page.author %}
       <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name"><a href="{{site.baseurl}}/blog/authors/{{page.author}}">{{ page.author }}</a></span> </span
+        <span itemprop="name"><a href="{{site.baseurl}}/blog/authors/{{author.username}}">{{ author.name }}</a></span> </span
       >{% endif %} on
       <time datetime="{{ page.date }}" itemprop="datePublished"
         >{{ page.date | date: "%b %-d, %Y" }}</time
@@ -39,7 +40,6 @@
     <br />
     {%- include share_page.html -%}
     <!-- Author box -->
-    {% assign author = site.data.authors[page.author] %}
       {% if author %}
       {% include author.html %}
     {% endif %}
