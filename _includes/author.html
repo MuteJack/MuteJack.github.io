@@ -5,11 +5,13 @@
     <div class="card-body">
         <div class="row">
                 <div class="col-md-4">
-                        {% if author.avatar_url %}
-                        <img class="author-profile-img" src="/assets/img/authors/{{author.avatar_url}}" alt="{{author.name}}" />
-                      {% else %}
-                        <img class="author-profile-img" src="{{site.baseurl}}/assets/img/authors/{{author.avatar}}" alt="{{author.name}}" />
-                      {% endif %}
+                        {% assign _avatar = author.avatar_url | default: author.avatar %}
+                        {% assign _p = _avatar | slice: 0, 2 %}
+                        {% if _p == "./" %}
+                        <img class="author-profile-img" src="{{site.baseurl}}/authors/{{ _avatar | remove_first: './' }}" alt="{{author.name}}" />
+                        {% else %}
+                        <img class="author-profile-img" src="{{site.baseurl}}/assets/img/authors/{{ _avatar }}" alt="{{author.name}}" />
+                        {% endif %}
                 </div>
                 <div class="col-md-6">
                         <p class="author_bio">{{author.bio}}</p>

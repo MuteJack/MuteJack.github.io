@@ -1,6 +1,6 @@
 ---
 title: About
-logo: profile.png
+logo: ./profile.png
 name: Mute Jack
 subtitle: Student researcher in Autonomous Driving and Simulation Environments
 bio: >-

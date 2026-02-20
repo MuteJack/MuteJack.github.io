@@ -19,11 +19,12 @@
               {% assign author = post.author %}
               {% if author %}
                {% assign author_data = site.authors | where: "username", author | first %}
-               <img
-                src="{{site.baseurl}}/assets/img/authors/{{author_data.avatar}}"
-                width="50px"
-                height="50px"
-             />
+               {% assign _p = author_data.avatar | slice: 0, 2 %}
+               {% if _p == "./" %}
+               <img src="{{site.baseurl}}/authors/{{ author_data.avatar | remove_first: './' }}" width="50px" height="50px" />
+               {% else %}
+               <img src="{{site.baseurl}}/assets/img/authors/{{author_data.avatar}}" width="50px" height="50px" />
+               {% endif %}
               {% endif %}
             {% endif %}
 

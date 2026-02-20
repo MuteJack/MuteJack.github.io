@@ -6,7 +6,12 @@ layout: default
   <div class="col-lg-4">
     <div class="card" id="profile-card">
       <a href="/">
+        {% assign _p = page.logo | slice: 0, 2 %}
+        {% if _p == "./" %}
+        <img src="{{site.baseurl}}/about/{{ page.logo | remove_first: './' }}" class="profile-img" />
+        {% else %}
         <img src="{{site.baseurl}}/assets/img/{{ page.logo }}" class="profile-img" />
+        {% endif %}
       </a>
       <h1 class="profile-name">{{ page.name }}</h1>
       <p class="profile-bio">{{ page.subtitle }}</p>
@@ -76,10 +81,12 @@ layout: default
       == true %}
       <div class="row" id="project-card">
         <div class="col-md-6">
-          <img
-            src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}"
-            class="project-img"
-          />
+          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
+          {% endif %}
         </div>
         <div class="col-md-4 center">
           <h4 class="experience-title">{{ project.project_title }}</h4>
@@ -106,10 +113,12 @@ layout: default
       %}
       <div class="row">
         <div class="col-md-2">
-          <img
-            src="{{site.baseurl}}/assets/img/{{ exp.company_logo }}"
-            class="company-logo"
-          />
+          {% assign _p = exp.company_logo | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ exp.company_logo | remove_first: './' }}" class="company-logo" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{ exp.company_logo }}" class="company-logo" />
+          {% endif %}
         </div>
         <div class="col-md-6">
           <h4 class="experience-title">{{ exp.designation }}</h4>
@@ -131,10 +140,12 @@ layout: default
       == true %}
       <div class="row">
         <div class="col-md-2">
-          <img
-            src="{{site.baseurl}}/assets/img/{{ detail.college_logo}}"
-            class="company-logo"
-          />
+          {% assign _p = detail.college_logo | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ detail.college_logo | remove_first: './' }}" class="company-logo" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{ detail.college_logo }}" class="company-logo" />
+          {% endif %}
         </div>
         <div class="col-md-6">
           <h4 class="experience-title">{{detail.college_degree }}</h4>

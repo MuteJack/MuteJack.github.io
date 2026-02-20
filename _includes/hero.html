@@ -21,7 +21,12 @@
 <!-- home hero section -->
 {% assign owner = site.authors | where: "username", site.author | first %}
 <div class="jumbotron">
+  {% assign _p = owner.avatar | slice: 0, 2 %}
+  {% if _p == "./" %}
+  <img class="author-profile-img" src="{{site.baseurl}}/authors/{{ owner.avatar | remove_first: './' }}" />
+  {% else %}
   <img class="author-profile-img" src="{{site.baseurl}}/assets/img/authors/{{owner.avatar}}" />
+  {% endif %}
   <p class="jumbotron-heading">{{site.hero_greeting}}</p>
 
   <p class="lead" id="typewriteText"></p>
