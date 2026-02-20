@@ -2,6 +2,7 @@
 title: About
 logo: profile.png
 name: Mute Jack
+subtitle: Student researcher in Autonomous Driving and Simulation Environments
 bio: >-
   Hi, my name is Mute Jack (=Jack Mute). <br>
   I am a student researcher about Autonomous Driving, Simulator, AR & VR, DeepLearning and etc.
