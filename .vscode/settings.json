@@ -1,0 +1,6 @@
+{
+    "markdown.preview.openMarkdownLinks": "inEditor",
+    "workbench.editorAssociations": {
+        "*.md": "default"
+    }
+}
