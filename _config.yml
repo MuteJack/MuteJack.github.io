@@ -30,65 +30,6 @@ hero_greeting: "Hi, I am Mute Jack !"
 typewrite-text: Welcome to MuteJack's GitHub Blog. :D
 hero_cover_img: sample_cover.jpg # replace this for changing homepage cover (eg. try cover.jpeg). Image should be in /assets/img
 
-# Projects
-show_author_project_details: true # Choose what to show ( can be true or false)
-author_project_details:
-              - project_thumbnail: project_thumbnail/gamershub.png
-                project_title: S/W Translations
-                project_description: Korean Translations for Researchers and Gamers
-                project_url: /blog/mycopsychosys-unofficial-patch/
-                visibility: true
-              - project_thumbnail: hack4r.PNG
-                project_title: Hack4r
-                project_description: A Platform built for Hackers and Penetration Testers
-                project_url: https://hack4r.com
-                visibility: false
-
-# Work Experiences
-show_author_work_experiences: true # Choose what to show ( can be true or false)
-author_work_experiences:
-            - company_name: Google
-              company_logo: google.png
-              company_url: https://google.com
-              designation: Software Engineer
-              description: Worked on various Google Products
-              visibility: false
-            - company_name: Google
-              company_logo: google.png
-              company_url: https://google.com
-              designation: Software Engineer
-              description: Worked on various Google Products
-              visibility: false
-            - company_name: Microsoft
-              company_logo: microsoft.png
-              company_url: https://microsoft.com
-              designation: Azure Developer
-              description: Worked on various Azure Cloud Products
-              visibility: false
-
-# Education
-show_author_education_details: true # Choose what to show ( can be true or false)
-author_education_details:
-              - college_logo: mit.png
-                college_name: Unknown University (2019.03 ~ 2024.02)
-                # college_url: https://mit.org
-                college_degree: Bachelor of Engineering
-                description: |
-                  Major: IT Automobile
-                  2nd Major: Electric, Electronic
-                  Minor: Urban Air Mobility
-                visibility: true
-              
-              - college_logo: mit.png
-                college_name: Unknown University (2024.03 ~ Current)
-                # college_url: https://mit.org
-                college_degree: Graduate Student
-                description: |
-                  Major: Electric Engineering
-                  Research Area: Autonomous Driving
-                visibility: true
-
-
 
 #for comments ( we got Disqus and Hyvor Commenting, uncomment the one you want to use )
 

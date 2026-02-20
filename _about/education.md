@@ -1,0 +1,24 @@
+---
+layout: null
+permalink: /about/education.json
+sitemap: false
+show: true
+items:
+  - college_logo: mit.png
+    college_name: Unknown University (2019.03 ~ 2024.02)
+    # college_url: https://mit.org
+    college_degree: Bachelor of Engineering
+    description: |
+      Major: IT Automobile
+      2nd Major: Electric, Electronic
+      Minor: Urban Air Mobility
+    visibility: true
+  - college_logo: mit.png
+    college_name: Unknown University (2024.03 ~ Current)
+    # college_url: https://mit.org
+    college_degree: Graduate Student
+    description: |
+      Major: Electric Engineering
+      Research Area: Autonomous Driving
+    visibility: true
+---
