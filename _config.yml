@@ -1,4 +1,4 @@
-title: MuteJack
+title: MuteJack's Blog
 subtitle: Amature Developer
 description: >- # this means to ignore newlines until "baseurl:"
   Welcome to MuteJack's GitHub Blog.
@@ -22,14 +22,10 @@ urls:
     #   url : /contact
 
 
-# Edit Author details (For multi authors check _data/authors.yml)
+# Site owner (username in _authors collection)
+author: mutejack
 
-author_logo: profile.png
-author: Mute Jack
-author_bio: Hi, my name is Mute Jack (=Jack Mute). <br>I am a amature developer interested in Autonomous Driving, Simulator, AR & VR, S/W Translation and etc.
-author_email: "coldman1224@outlook.com"
-author_location: Republic of Korea
-author_website_url: "https://blog.naver.com/coldman1224"
+# Homepage
 typewrite-text: Welcome to MuteJack's GitHub Blog. :D
 hero_cover_img: sample_cover.jpg # replace this for changing homepage cover (eg. try cover.jpeg). Image should be in /assets/img
 
@@ -154,6 +150,8 @@ collections:
     output: true
   authors:
     output: true
+  about:
+    output: true
 
 defaults:
   -
@@ -168,6 +166,13 @@ defaults:
     values:
       layout: author
       permalink: /blog/authors/:slug
+  -
+    scope:
+      path: ""
+      type: about
+    values:
+      layout: about-me
+      permalink: /about/
   -
     scope:
       path: 'assets/**'

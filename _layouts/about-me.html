@@ -6,9 +6,9 @@ layout: default
   <div class="col-lg-4">
     <div class="card" id="profile-card">
       <a href="/">
-        <img src="{{site.baseurl}}/assets/img/{{ site.author_logo }}" class="profile-img" />
+        <img src="{{site.baseurl}}/assets/img/{{ page.logo }}" class="profile-img" />
       </a>
-      <h1 class="profile-name">{{ site.title }}</h1>
+      <h1 class="profile-name">{{ page.name }}</h1>
       <p class="profile-bio">{{ site.subtitle }}</p>
       {% if site.github_username %} {%- include github_follow_button.html -%} {%
       endif %}
@@ -84,12 +84,12 @@ layout: default
         {% endif %}
       </p>
 
-      {% if site.author_location %}
-      <h6><a href="https://www.google.com/maps/search/?api=1&query={{ site.author_location }}" class="social-link"><i class="fas fa-map-marker-alt"></i> {{ site.author_location }}</a></h6>
-      {% endif %} {% if site.author_email %}
-      <h6><a href="mailto:{{ site.author_email }}"><i class="fas fa-envelope" class="social-link"></i> {{ site.author_email }}</a></h6>
-      {% endif %} {% if site.author_website_url %}
-      <h6><a href="{{ site.author_website_url }}"><i class="fas fa-link" class="social-link"></i> {{ site.author_website_url }}</a></h6>
+      {% if page.location %}
+      <h6><a href="https://www.google.com/maps/search/?api=1&query={{ page.location }}" class="social-link"><i class="fas fa-map-marker-alt"></i> {{ page.location }}</a></h6>
+      {% endif %} {% if page.email %}
+      <h6><a href="mailto:{{ page.email }}"><i class="fas fa-envelope" class="social-link"></i> {{ page.email }}</a></h6>
+      {% endif %} {% if page.website_url %}
+      <h6><a href="{{ page.website_url }}"><i class="fas fa-link" class="social-link"></i> {{ page.website_url }}</a></h6>
       {% endif %}
     </div>
 
@@ -108,10 +108,10 @@ layout: default
     {% endif %}
   </div>
   <div class="col-lg-8">
-    {% if site.author_bio %}
+    {% if page.bio %}
     <div class="card">
       <h1 class="card-title">About</h1>
-      <p>{{ site.author_bio }}</p>
+      <p>{{ page.bio }}</p>
     </div>
     {% endif %} {% if site.show_author_project_details == true %}
     <div id="author_projects" class="card">

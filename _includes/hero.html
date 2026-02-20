@@ -19,9 +19,10 @@
 </style>
 
 <!-- home hero section -->
+{% assign owner = site.authors | where: "username", site.author | first %}
 <div class="jumbotron">
-  <img class="author-profile-img" src="{{site.baseurl}}/assets/img/{{site.author_logo}}" />
-  <p class="jumbotron-heading">Hi, I am {{site.author}} !</p>
+  <img class="author-profile-img" src="{{site.baseurl}}/assets/img/authors/{{owner.avatar}}" />
+  <p class="jumbotron-heading">Hi, I am {{owner.name}} !</p>
 
   <p class="lead" id="typewriteText"></p>
   {% comment %}

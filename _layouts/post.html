@@ -11,9 +11,10 @@ layout: default
 <div class="row">
   <div class="col-md-4">
     <div class="card">
-      <div class="card-header">About {{site.author}}</div>
+      {% assign owner = site.authors | where: "username", site.author | first %}
+      <div class="card-header">About {{owner.name}}</div>
       <div class="card-body">
-        <p class="author_bio">{{ site.author_bio }}</p>
+        <p class="author_bio">{{ owner.bio }}</p>
         {%- include github_star_button.html -%}
       </div>
     </div>
