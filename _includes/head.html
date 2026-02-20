@@ -40,7 +40,8 @@
   />
   <meta content="{{ site.url }}/about/" property="article:author" />
   {% endif %} {% if page.thumbnail %}
-  <meta content="{{ site.url }}{{ page.thumbnail }}" property="og:image" />
+  {% assign thumb_prefix = page.thumbnail | slice: 0, 2 %}
+  <meta content="{% if thumb_prefix == './' %}{{ site.url }}{{ page.url }}{{ page.thumbnail | remove_first: './' }}{% else %}{{ site.url }}{{ page.thumbnail }}{% endif %}" property="og:image" />
   {% endif %} {% if page.categories %} {% for category in page.categories
   limit:1 %}
   <meta content="{{ category }}" property="article:section" />
@@ -68,15 +69,15 @@
   {% endif %} {% if page.header-img %}
   <meta
     name="twitter:image:src"
-    content="{{ site.url }}{{ page.thumbnail }}"
+    content="{% if thumb_prefix == './' %}{{ site.url }}{{ page.url }}{{ page.thumbnail | remove_first: './' }}{% else %}{{ site.url }}{{ page.thumbnail }}{% endif %}"
   />
   {% endif %}
 
-  <link rel="stylesheet" href="{{site.url}}{{site.baseurl}}/assets/css/main.css" />
-  <!-- <link rel="stylesheet" href="{{site.url}}{{site.baseurl}}/assets/css/custom-style.css" /> -->
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css" />
+  <!-- <link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom-style.css" /> -->
   <link
     rel="stylesheet"
-    href="{{site.url}}{{site.baseurl}}/assets/bower_components/lightgallery/dist/css/lightgallery.min.css"
+    href="{{site.baseurl}}/assets/bower_components/lightgallery/dist/css/lightgallery.min.css"
   />
   <link
     rel="stylesheet"
@@ -84,15 +85,15 @@
   />
   <link
     rel="stylesheet"
-    href="{{site.url}}{{site.baseurl}}/assets/bower_components/bootstrap/dist/css/bootstrap.min.css"
+    href="{{site.baseurl}}/assets/bower_components/bootstrap/dist/css/bootstrap.min.css"
   />
   <link
     rel="stylesheet"
-    href="{{site.url}}{{site.baseurl}}/assets/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css"
+    href="{{site.baseurl}}/assets/bower_components/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css"
   />
   <link
     rel="stylesheet"
-    href="{{site.url}}{{site.baseurl}}/assets/bower_components/icono/dist/icono.min.css"
+    href="{{site.baseurl}}/assets/bower_components/icono/dist/icono.min.css"
   />
   <!-- Fonts-->
   <link
@@ -102,12 +103,12 @@
   <!-- Favicon -->
   <link
     rel="icon"
-    href="{{site.url}}{{site.baseurl}}/assets/img/favicon.ico"
+    href="{{site.baseurl}}/assets/img/favicon.ico"
     type="image/gif"
     sizes="16x16"
   />
   <script>
-      var base_url = '{{ site.url}}{{site.baseurl}}' ;
+      var base_url = '{{site.baseurl}}' ;
    </script>
 
   <!-- Jquery -->
@@ -116,19 +117,19 @@
     integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
     crossorigin="anonymous"
   ></script>
-  <!-- <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/jquery/dist/jquery.min.js"></script> -->
-  <script src="{{site.url}}{{site.baseurl}}/assets/js/mode-switcher.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/jquery.easing/jquery.easing.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/jquery-mousewheel/jquery.mousewheel.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/ghosthunter/dist/jquery.ghostHunter.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/lightgallery/dist/js/lightgallery-all.min.js"></script>
+  <!-- <script src="{{site.baseurl}}/assets/bower_components/jquery/dist/jquery.min.js"></script> -->
+  <script src="{{site.baseurl}}/assets/js/mode-switcher.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/jquery.easing/jquery.easing.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/jquery-mousewheel/jquery.mousewheel.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/ghosthunter/dist/jquery.ghostHunter.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/lightgallery/dist/js/lightgallery-all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.2/picturefill.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/nanobar/nanobar.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/bower_components/typewrite/dist/typewrite.min.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/js/search.js"></script>
-  <script src="{{site.url}}{{site.baseurl}}/assets/js/on-scroll-progress.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/nanobar/nanobar.min.js"></script>
+  <script src="{{site.baseurl}}/assets/bower_components/typewrite/dist/typewrite.min.js"></script>
+  <script src="{{site.baseurl}}/assets/js/search.js"></script>
+  <script src="{{site.baseurl}}/assets/js/on-scroll-progress.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
@@ -176,8 +177,8 @@
   <script
     data-name="BMC-Widget"
     src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-    data-id="sujaykundu"
-    data-description="Support me on Buy me a coffee!"
+    data-id="mutejack"
+    data-description="Do not Buy me a coffee! It's just for a test function. lol"
     data-message=""
     data-color="#FF813F"
     data-position="right"
