@@ -6,6 +6,15 @@ layout: default
                 <h1>Author : {{ page.name }}</h1>
                 <img src="{{site.url}}{{site.baseurl}}/assets/img/authors/{{ page.avatar}}" class="author-profile-img" />
                 <p>{{ page.bio }}</p>
+                {% if page.email %}<p>Email : {{ page.email }}</p>{% endif %}
+                {% if page.site %}<p>Website : <a href="{{ page.site }}">{{ page.site }}</a></p>{% endif %}
+                {% if page.social %}
+                <p class="profile-links">
+                    {% for network in page.social %}
+                        <a class="social-link" href="{{ network.url }}" target="_blank"><i class="fab fa-{{ network.title }} fa-fw"></i></a>
+                    {% endfor %}
+                </p>
+                {% endif %}
 
                 <h2>Post by this author</h2>
                 {%- assign author_posts = site.posts
