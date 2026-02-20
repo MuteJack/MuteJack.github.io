@@ -93,11 +93,17 @@ layout: default
       {% endif %}
     </div>
 
+    {% assign skills_data = site.about | where: "slug", "skills" | first %}
+    {% if skills_data.skills %}
     <div class="card">
       <h1>Skills</h1>
-
-      {%- include author_skills.html -%}
+      <p>
+        {% for skill in skills_data.skills %}
+        <b>{{ skill.category }}:</b> {{ skill.items }}<br>
+        {% endfor %}
+      </p>
     </div>
+    {% endif %}
 
     {% if site.wakatime_username %}
     <div class="card">
