@@ -4,7 +4,7 @@ permalink: /about/projects.json
 sitemap: false
 show: true
 items:
-  - project_thumbnail: project_thumbnail/gamershub.png
+  - project_thumbnail: ./projects/translations.jpg
     project_title: S/W Translations
     project_description: Korean Translations for Researchers and Gamers
     project_url: /blog/mycopsychosys-unofficial-patch/
