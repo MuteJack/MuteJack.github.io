@@ -1,6 +1,5 @@
 <!-- Place this tag where you want the button to render. -->
-{% assign github_link = page.social | where: "title", "github" | first %}
-{% if github_link %}
-{% assign github_username = github_link.url | split: "/" | last %}
-<a class="github-button" href="{{ github_link.url }}" data-size="large" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-show-count="true" aria-label="Follow @{{ github_username }} on GitHub">Follow @{{ github_username }}</a>
+{% if page.follow_github %}
+{% assign github_username = page.follow_github | split: "/" | last %}
+<a class="github-button" href="{{ page.follow_github }}" data-size="large" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-show-count="true" aria-label="Follow @{{ github_username }} on GitHub">Follow @{{ github_username }}</a>
 {% endif %}

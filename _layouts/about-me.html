@@ -10,8 +10,7 @@ layout: default
       </a>
       <h1 class="profile-name">{{ page.name }}</h1>
       <p class="profile-bio">{{ page.subtitle }}</p>
-      {% assign github_link = page.social | where: "title", "github" | first %}
-      {% if github_link %} {%- include github_follow_button.html -%} {%
+      {% if page.follow_github %} {%- include github_follow_button.html -%} {%
       endif %}
 
       {% if page.social %}

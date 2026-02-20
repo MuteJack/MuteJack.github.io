@@ -10,6 +10,7 @@ bio: >-
 email: "coldman1224@outlook.com"
 location: Republic of Korea
 website_url: "https://blog.naver.com/coldman1224"
+follow_github: https://github.com/MuteJack
 
 # social links
 social:
