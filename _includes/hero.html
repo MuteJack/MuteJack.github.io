@@ -22,7 +22,7 @@
 {% assign owner = site.authors | where: "username", site.author | first %}
 <div class="jumbotron">
   <img class="author-profile-img" src="{{site.baseurl}}/assets/img/authors/{{owner.avatar}}" />
-  <p class="jumbotron-heading">Hi, I am {{owner.name}} !</p>
+  <p class="jumbotron-heading">{{site.hero_greeting}}</p>
 
   <p class="lead" id="typewriteText"></p>
   {% comment %}

@@ -26,6 +26,7 @@ urls:
 author: mutejack
 
 # Homepage
+hero_greeting: "Hi, I am Mute Jack !"
 typewrite-text: Welcome to MuteJack's GitHub Blog. :D
 hero_cover_img: sample_cover.jpg # replace this for changing homepage cover (eg. try cover.jpeg). Image should be in /assets/img
 
