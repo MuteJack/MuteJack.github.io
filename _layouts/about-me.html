@@ -72,38 +72,6 @@ layout: default
     </div>
     {% endif %}
 
-    {% assign projects_data = site.about | where: "slug", "projects" | first %}
-    {% if projects_data.show %}
-    <div id="author_projects" class="card">
-      <h1 class="card-title">Projects</h1>
-      <br />
-      {% for project in projects_data.items %} {% if project.visibility
-      == true %}
-      <div class="row" id="project-card">
-        <div class="col-md-6">
-          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
-          {% if _p == "./" %}
-          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
-          {% else %}
-          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
-          {% endif %}
-        </div>
-        <div class="col-md-4 center">
-          <h4 class="experience-title">{{ project.project_title }}</h4>
-          <h6 class="experience-info">{{ project.project_info}}</h6>
-          <p class="experience-desc">{{ project.project_description }}</p>
-          <p>
-            <a class="project-link" href="{{project.project_url}}"
-              >{{ project.project_url}}</a
-            >
-          </p>
-        </div>
-      </div>
-      <br />
-      {% endif %} {% endfor %}
-    </div>
-    {% endif %}
-
     {% assign work_data = site.about | where: "slug", "work_experiences" | first %}
     {% if work_data.show %}
     <div class="card">
@@ -154,6 +122,38 @@ layout: default
           <p><a href="{{detail.college_url}}">{{ detail.college_url}}</a></p>
         </div>
       </div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+
+    {% assign projects_data = site.about | where: "slug", "projects" | first %}
+    {% if projects_data.show %}
+    <div id="author_projects" class="card">
+      <h1 class="card-title">Projects</h1>
+      <br />
+      {% for project in projects_data.items %} {% if project.visibility
+      == true %}
+      <div class="row" id="project-card">
+        <div class="col-md-6">
+          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
+          {% endif %}
+        </div>
+        <div class="col-md-4 center">
+          <h4 class="experience-title">{{ project.project_title }}</h4>
+          <h6 class="experience-info">{{ project.project_info}}</h6>
+          <p class="experience-desc">{{ project.project_description }}</p>
+          <p>
+            <a class="project-link" href="{{project.project_url}}"
+              >{{ project.project_url}}</a
+            >
+          </p>
+        </div>
+      </div>
+      <br />
       {% endif %} {% endfor %}
     </div>
     {% endif %}
