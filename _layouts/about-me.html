@@ -16,9 +16,14 @@ layout: default
 
       {% if page.social %}
       <p class="profile-links">
+        {% assign solid_icons = "blog,link,envelope,globe" | split: "," %}
         {% for network in page.social %}
         <a class="social-link" href="{{ network.url }}" target="_blank">
+          {% if solid_icons contains network.title %}
+          <i class="fas fa-{{ network.title }}"></i>
+          {% else %}
           <i class="fab fa-{{ network.title }}"></i>
+          {% endif %}
         </a>
         {% endfor %}
       </p>

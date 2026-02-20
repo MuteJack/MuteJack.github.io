@@ -17,6 +17,8 @@ social:
     url: "https://github.com/MuteJack"
   - title: "youtube"
     url: "https://www.youtube.com/@Mute_Jack"
+  - title: "blog"
+    url: "https://blog.naver.com/coldman1224"
 
   # - title: "linkedin"
   #   url: "https://www.linkedin.com/in/johndoe"
