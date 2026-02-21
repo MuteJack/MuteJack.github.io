@@ -80,33 +80,6 @@ layout: default
     </div>
     {% endif %}
 
-    {% assign work_data = site.about | where: "slug", "work_experiences" | first %}
-    {% if work_data.show %}
-    <div class="card">
-      <h1 class="card-title">Work Experience</h1>
-      <br />
-      {% for exp in work_data.items %} {% if exp.visibility == true
-      %}
-      <div class="row">
-        <div class="col-md-2">
-          {% assign _p = exp.company_logo | slice: 0, 2 %}
-          {% if _p == "./" %}
-          <img src="{{site.baseurl}}/about/{{ exp.company_logo | remove_first: './' }}" class="company-logo" />
-          {% else %}
-          <img src="{{site.baseurl}}/assets/img/{{ exp.company_logo }}" class="company-logo" />
-          {% endif %}
-        </div>
-        <div class="col-md-6">
-          <h4 class="experience-title">{{ exp.designation }}</h4>
-          <h6 class="experience-info">{{ exp.company_name}}</h6>
-          <p class="experience-desc">{{ exp.description }}</p>
-          <p><a href="{{exp.company_url}}">{{ exp.company_url}}</a></p>
-        </div>
-      </div>
-      {% endif %} {% endfor %}
-    </div>
-    {% endif %}
-
     {% assign edu_data = site.about | where: "slug", "education" | first %}
     {% if edu_data.show %}
     <div class="card">
@@ -134,12 +107,39 @@ layout: default
     </div>
     {% endif %}
 
-    {% assign projects_data = site.about | where: "slug", "projects" | first %}
-    {% if projects_data.show %}
-    <div id="author_projects" class="card">
-      <h1 class="card-title">Projects</h1>
+    {% assign work_data = site.about | where: "slug", "work_experiences" | first %}
+    {% if work_data.show %}
+    <div class="card">
+      <h1 class="card-title">Work Experience</h1>
       <br />
-      {% for project in projects_data.items %} {% if project.visibility
+      {% for exp in work_data.items %} {% if exp.visibility == true
+      %}
+      <div class="row">
+        <div class="col-md-2">
+          {% assign _p = exp.company_logo | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ exp.company_logo | remove_first: './' }}" class="company-logo" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{ exp.company_logo }}" class="company-logo" />
+          {% endif %}
+        </div>
+        <div class="col-md-6">
+          <h4 class="experience-title">{{ exp.designation }}</h4>
+          <h6 class="experience-info">{{ exp.company_name}}</h6>
+          <p class="experience-desc">{{ exp.description }}</p>
+          <p><a href="{{exp.company_url}}">{{ exp.company_url}}</a></p>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+
+    {% assign personal_projects = site.about | where: "slug", "personal_projects" | first %}
+    {% if personal_projects.show %}
+    <div id="author_projects" class="card">
+      <h1 class="card-title">Personal Projects</h1>
+      <br />
+      {% for project in personal_projects.items %} {% if project.visibility
       == true %}
       <div class="row" id="project-card">
         <div class="col-md-6">
@@ -150,7 +150,71 @@ layout: default
           <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
           {% endif %}
         </div>
-        <div class="col-md-4 center">
+        <div class="col-md-6 center">
+          <h4 class="experience-title">{{ project.project_title }}</h4>
+          <h6 class="experience-info">{{ project.project_info}}</h6>
+          <p class="experience-desc">{{ project.project_description }}</p>
+          <p>
+            <a class="project-link" href="{{project.project_url}}"
+              >{{ project.project_url}}</a
+            >
+          </p>
+        </div>
+      </div>
+      <br />
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+
+    {% assign research_projects = site.about | where: "slug", "research_projects" | first %}
+    {% if research_projects.show %}
+    <div id="author_projects" class="card">
+      <h1 class="card-title">Research Projects</h1>
+      <br />
+      {% for project in research_projects.items %} {% if project.visibility
+      == true %}
+      <div class="row" id="project-card">
+        <div class="col-md-6">
+          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
+          {% endif %}
+        </div>
+        <div class="col-md-6 center">
+          <h4 class="experience-title">{{ project.project_title }}</h4>
+          <h6 class="experience-info">{{ project.project_info}}</h6>
+          <p class="experience-desc">{{ project.project_description }}</p>
+          <p>
+            <a class="project-link" href="{{project.project_url}}"
+              >{{ project.project_url}}</a
+            >
+          </p>
+        </div>
+      </div>
+      <br />
+      {% endif %} {% endfor %}
+    </div>
+    {% endif %}
+
+    {% assign work_projects = site.about | where: "slug", "work_projects" | first %}
+    {% if work_projects.show %}
+    <div id="author_projects" class="card">
+      <h1 class="card-title">Work Projects</h1>
+      <br />
+      {% for project in work_projects.items %} {% if project.visibility
+      == true %}
+      <div class="row" id="project-card">
+        <div class="col-md-6">
+          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
+          {% if _p == "./" %}
+          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
+          {% else %}
+          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
+          {% endif %}
+        </div>
+        <div class="col-md-6 center">
           <h4 class="experience-title">{{ project.project_title }}</h4>
           <h6 class="experience-info">{{ project.project_info}}</h6>
           <p class="experience-desc">{{ project.project_description }}</p>
