@@ -59,7 +59,10 @@ layout: default
     <div class="card">
       <h1>Coding Activity</h1>
       {% for embed in activity_data.embeds %}
-      {% if embed.url_light and embed.url_dark %}
+      {% if embed.type == "badge" %}
+      <div class="theme-embed-light"><img src="{{ embed.url_light }}" alt="{{ embed.title }}" /></div>
+      <div class="theme-embed-dark"><img src="{{ embed.url_dark }}" alt="{{ embed.title }}" /></div>
+      {% elsif embed.url_light and embed.url_dark %}
       <figure class="theme-embed-light"><embed src="{{ embed.url_light }}"></embed></figure>
       <figure class="theme-embed-dark"><embed src="{{ embed.url_dark }}"></embed></figure>
       {% elsif embed.url %}

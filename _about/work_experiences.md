@@ -2,7 +2,7 @@
 layout: null
 permalink: /about/work_experiences.json
 sitemap: false
-show: false
+show: true
 items:
   - company_name: Google
     company_logo: google.png

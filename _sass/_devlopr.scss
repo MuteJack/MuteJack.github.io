@@ -659,6 +659,8 @@ header {
 [data-theme="dark"] .theme-embed-dark { display: block; }
 [data-theme="light"] .theme-embed-light { display: block; }
 [data-theme="light"] .theme-embed-dark { display: none; }
+.theme-embed-light[style], .theme-embed-dark[style] { margin-bottom: 1em; }
+div.theme-embed-light, div.theme-embed-dark { margin-bottom: 1em; }
 .recent-article-link{
     font-size: 20px;
     text-decoration: none;
