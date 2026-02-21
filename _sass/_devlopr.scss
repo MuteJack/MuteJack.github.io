@@ -655,6 +655,10 @@ header {
 #article-img img {
     border-radius: 50%;
 }
+[data-theme="dark"] .theme-embed-light { display: none; }
+[data-theme="dark"] .theme-embed-dark { display: block; }
+[data-theme="light"] .theme-embed-light { display: block; }
+[data-theme="light"] .theme-embed-dark { display: none; }
 .recent-article-link{
     font-size: 20px;
     text-decoration: none;
