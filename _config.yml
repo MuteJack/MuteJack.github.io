@@ -77,13 +77,17 @@ collections:
     output: true
   about:
     output: true
+  gallery:
+    output: true
 
 defaults:
   -
     scope:
-      path: "gallery"
+      path: ""
+      type: gallery
     values:
-      permalink: /:path/:basename:output_ext
+      layout: gallery
+      permalink: /gallery/:slug.html
   -
     scope:
       path: ""

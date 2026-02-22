@@ -1,3 +1,5 @@
+---
+title: Mountain2
 picture_path: mountain2
 preview:
   filename: 1
@@ -21,3 +23,4 @@ pictures:
   sizes:
   - 3.jpg
   thumbnail: 3-thumbnail.jpg
+---

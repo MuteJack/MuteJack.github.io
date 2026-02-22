@@ -10,14 +10,14 @@ permalink: /gallery/
       <div class="row">
     {% assign count = 0 %}
     {% assign align = "left" %}
-    {% for gallery in site.data.galleries.overview %}
+    {% for gallery in site.gallery %}
     {% if count == 0 %}<div class="row">{% endif %}
       <div class="card">
         <div class="card-title"> {{gallery.title}}</div>
         <div class="row">
 
-        <a href="{{ site.baseurl }}/gallery/{{ gallery.directory }}.html">
-          <img class="img-thumbnail" alt="{{ gallery.title }}" src="{{ site.baseurl }}/assets/img/gallery/{% if gallery.picture_path %}{{ gallery.picture_path }}{% else %}{{ gallery.directory }}{% endif %}/{{ gallery.preview.thumbnail }}" />
+        <a href="{{ gallery.url }}">
+          <img class="img-thumbnail" alt="{{ gallery.title }}" src="{{ site.baseurl }}/assets/img/gallery/{{ gallery.picture_path }}/{{ gallery.preview.thumbnail }}" />
         </a>
         </div>
       </div>
