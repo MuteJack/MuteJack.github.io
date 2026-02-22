@@ -12,16 +12,16 @@ items:
     # college_url: https://mit.org
     college_degree: Bachelor of Engineering
     description: |
-      Major: IT Automobile
-      2nd Major: Electric, Electronic
+      Major: IT Automobile(1st), Electric(2nd), Electronic(2nd) <br>
       Minor: Urban Air Mobility
     visibility: true
+
   - college_logo: ./education/Graduate_School.png
     college_name: Unknown University (2024.03 ~ Current)
     # college_url: https://mit.org
     college_degree: Graduate Student
     description: |
-      Major: Electric Engineering
+      Major: Electric Engineering <br>
       Research Area: Autonomous Driving
     visibility: true
 ---
