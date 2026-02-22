@@ -8,7 +8,7 @@ subtitle: Student researcher in Autonomous Driving, Simulation Environments, Dee
   # </span> 
 bio: >-
   Hi, my name is Mute Jack (=Jack Mute). <br>
-  I am a student researcher about Autonomous Driving, Simulator, AR & VR, DeepLearning and etc. <br>
+  I am a student researcher in Autonomous Driving, Simulator, AR & VR, DeepLearning and etc. <br>
   And also a amature developer interested in S/W Translation and etc.
 email: "coldman1224@outlook.com"
 location: Republic of Korea

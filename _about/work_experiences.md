@@ -3,6 +3,9 @@ layout: null
 permalink: /about/work_experiences.json
 sitemap: false
 show: true
+order: 2
+section_type: experience
+section_title: Work Experience
 items:
   - company_name: Open to Opportunities
     company_logo: ./work_experiences/open to opportunities.png

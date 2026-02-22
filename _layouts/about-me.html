@@ -56,20 +56,102 @@ layout: default
 
     {% assign activity_data = site.about | where: "slug", "coding_activity" | first %}
     {% if activity_data.embeds %}
+    {% assign font_scale = activity_data.font_scale | default: 1 %}
+    {% assign vp = activity_data.viewbox_padding %}
+    {% assign vp_top = vp.top | default: 0.05 %}
+    {% assign vp_right = vp.right | default: 0.05 %}
+    {% assign vp_bottom = vp.bottom | default: 0.05 %}
+    {% assign vp_left = vp.left | default: 0.05 %}
     <div class="card">
       <h1>Coding Activity</h1>
       {% for embed in activity_data.embeds %}
       {% if embed.type == "badge" %}
       <div class="theme-embed-light"><img src="{{ embed.url_light }}" alt="{{ embed.title }}" /></div>
       <div class="theme-embed-dark"><img src="{{ embed.url_dark }}" alt="{{ embed.title }}" /></div>
+      {% elsif embed.type == "card" %}
+      <figure class="theme-embed-light svg-inject svg-card" data-src="{{ embed.url_light }}"></figure>
+      <figure class="theme-embed-dark svg-inject svg-card" data-src="{{ embed.url_dark }}"></figure>
       {% elsif embed.url_light and embed.url_dark %}
-      <figure class="theme-embed-light"><embed src="{{ embed.url_light }}"></embed></figure>
-      <figure class="theme-embed-dark"><embed src="{{ embed.url_dark }}"></embed></figure>
+      <figure class="theme-embed-light svg-inject" data-src="{{ embed.url_light }}"></figure>
+      <figure class="theme-embed-dark svg-inject" data-src="{{ embed.url_dark }}"></figure>
       {% elsif embed.url %}
-      <figure><embed src="{{ embed.url }}"></embed></figure>
+      <figure class="svg-inject" data-src="{{ embed.url }}"></figure>
       {% endif %}
       {% endfor %}
     </div>
+    <script>
+    (function(){
+      var scale = {{ font_scale }};
+      var pad = {top:{{ vp_top }}, right:{{ vp_right }}, bottom:{{ vp_bottom }}, left:{{ vp_left }}};
+      function scaleFonts(svg){
+        var re = /font-size\s*:\s*([\d.]+)(px|em|pt)/g;
+        var rep = function(m,size,unit){ return 'font-size:' + (parseFloat(size)*scale) + unit; };
+        svg.querySelectorAll('style').forEach(function(styleEl){
+          styleEl.textContent = styleEl.textContent.replace(re, rep);
+        });
+        svg.querySelectorAll('[style]').forEach(function(el){
+          var s = el.getAttribute('style');
+          if(/font-size/.test(s)){
+            el.setAttribute('style', s.replace(re, rep));
+          }
+        });
+      }
+      function expandViewBox(svg){
+        var vb = svg.getAttribute('viewBox');
+        if(!vb) return;
+        var parts = vb.split(/[\s,]+/).map(Number);
+        var x=parts[0], y=parts[1], w=parts[2], h=parts[3];
+        var dl = w * pad.left, dr = w * pad.right;
+        var dt = h * pad.top, db = h * pad.bottom;
+        svg.setAttribute('viewBox', (x-dl)+' '+(y-dt)+' '+(w+dl+dr)+' '+(h+dt+db));
+      }
+      var inlineScripts = [];
+      var externalSrcs = {};
+      var promises = [];
+      document.querySelectorAll('.svg-inject').forEach(function(el){
+        var url = el.getAttribute('data-src');
+        if(!url) return;
+        var isCard = el.classList.contains('svg-card');
+        var p = fetch(url).then(function(r){return r.text();}).then(function(svgText){
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(svgText, 'image/svg+xml');
+          var svg = doc.querySelector('svg');
+          if(!svg) return;
+          if(!svg.getAttribute('viewBox')){
+            var w = parseFloat(svg.getAttribute('width'));
+            var h = parseFloat(svg.getAttribute('height'));
+            if(w && h) svg.setAttribute('viewBox', '0 0 '+w+' '+h);
+          }
+          svg.removeAttribute('width');
+          svg.removeAttribute('height');
+          scaleFonts(svg);
+          if(!isCard) expandViewBox(svg);
+          svg.querySelectorAll('script').forEach(function(s){
+            var href = s.getAttributeNS('http://www.w3.org/1999/xlink','href') || s.getAttribute('href');
+            if(href){ externalSrcs[href] = true; }
+            else if(s.textContent.trim()){ inlineScripts.push(s.textContent); }
+            s.parentNode.removeChild(s);
+          });
+          svg.style.width = '100%';
+          svg.style.height = 'auto';
+          el.appendChild(svg);
+        });
+        promises.push(p);
+      });
+      Promise.all(promises).then(function(){
+        inlineScripts.forEach(function(code){
+          var s = document.createElement('script');
+          s.textContent = code;
+          document.body.appendChild(s);
+        });
+        Object.keys(externalSrcs).forEach(function(src){
+          var s = document.createElement('script');
+          s.src = src;
+          document.body.appendChild(s);
+        });
+      });
+    })();
+    </script>
     {% endif %}
   </div>
   <div class="col-lg-8">
@@ -80,13 +162,13 @@ layout: default
     </div>
     {% endif %}
 
-    {% assign edu_data = site.about | where: "slug", "education" | first %}
-    {% if edu_data.show %}
+    {% assign sections = site.about | where: "show", true | sort: "order" %}
+    {% for section in sections %}
+    {% if section.section_type == "education" %}
     <div class="card">
-      <h1 class="card-title">Education</h1>
+      <h1 class="card-title">{{ section.section_title }}</h1>
       <br />
-      {% for detail in edu_data.items %} {% if detail.visibility
-      == true %}
+      {% for detail in section.items %} {% if detail.visibility == true %}
       <div class="row">
         <div class="col-md-2">
           {% assign _p = detail.college_logo | slice: 0, 2 %}
@@ -105,15 +187,11 @@ layout: default
       </div>
       {% endif %} {% endfor %}
     </div>
-    {% endif %}
-
-    {% assign work_data = site.about | where: "slug", "work_experiences" | first %}
-    {% if work_data.show %}
+    {% elsif section.section_type == "experience" %}
     <div class="card">
-      <h1 class="card-title">Work Experience</h1>
+      <h1 class="card-title">{{ section.section_title }}</h1>
       <br />
-      {% for exp in work_data.items %} {% if exp.visibility == true
-      %}
+      {% for exp in section.items %} {% if exp.visibility == true %}
       <div class="row">
         <div class="col-md-2">
           {% assign _p = exp.company_logo | slice: 0, 2 %}
@@ -132,15 +210,11 @@ layout: default
       </div>
       {% endif %} {% endfor %}
     </div>
-    {% endif %}
-
-    {% assign personal_projects = site.about | where: "slug", "personal_projects" | first %}
-    {% if personal_projects.show %}
+    {% elsif section.section_type == "project" %}
     <div id="author_projects" class="card">
-      <h1 class="card-title">Personal Projects</h1>
+      <h1 class="card-title">{{ section.section_title }}</h1>
       <br />
-      {% for project in personal_projects.items %} {% if project.visibility
-      == true %}
+      {% for project in section.items %} {% if project.visibility == true %}
       <div class="row" id="project-card">
         <div class="col-md-auto">
           {% assign _p = project.project_thumbnail | slice: 0, 2 %}
@@ -165,70 +239,7 @@ layout: default
       {% endif %} {% endfor %}
     </div>
     {% endif %}
-
-    {% assign research_projects = site.about | where: "slug", "research_projects" | first %}
-    {% if research_projects.show %}
-    <div id="author_projects" class="card">
-      <h1 class="card-title">Research Projects</h1>
-      <br />
-      {% for project in research_projects.items %} {% if project.visibility
-      == true %}
-      <div class="row" id="project-card">
-        <div class="col-md-auto">
-          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
-          {% if _p == "./" %}
-          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
-          {% else %}
-          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
-          {% endif %}
-        </div>
-        <div class="col center">
-          <h4 class="experience-title">{{ project.project_title }}</h4>
-          <h6 class="experience-info">{{ project.project_info}}</h6>
-          <p class="experience-desc">{{ project.project_description }}</p>
-          <p>
-            <a class="project-link" href="{{project.project_url}}"
-              >{{ project.project_url}}</a
-            >
-          </p>
-        </div>
-      </div>
-      <br />
-      {% endif %} {% endfor %}
-    </div>
-    {% endif %}
-
-    {% assign work_projects = site.about | where: "slug", "work_projects" | first %}
-    {% if work_projects.show %}
-    <div id="author_projects" class="card">
-      <h1 class="card-title">Work Projects</h1>
-      <br />
-      {% for project in work_projects.items %} {% if project.visibility
-      == true %}
-      <div class="row" id="project-card">
-        <div class="col-md-auto">
-          {% assign _p = project.project_thumbnail | slice: 0, 2 %}
-          {% if _p == "./" %}
-          <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
-          {% else %}
-          <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
-          {% endif %}
-        </div>
-        <div class="col center">
-          <h4 class="experience-title">{{ project.project_title }}</h4>
-          <h6 class="experience-info">{{ project.project_info}}</h6>
-          <p class="experience-desc">{{ project.project_description }}</p>
-          <p>
-            <a class="project-link" href="{{project.project_url}}"
-              >{{ project.project_url}}</a
-            >
-          </p>
-        </div>
-      </div>
-      <br />
-      {% endif %} {% endfor %}
-    </div>
-    {% endif %}
+    {% endfor %}
   </div>
 </div>
 </div>

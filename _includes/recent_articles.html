@@ -7,13 +7,12 @@
       <a class="btn btn-lg btn-dark" href="/blog"> View All </a>
     </div>
   </div>
-  <br />
 
   <ul>
     {% for post in site.posts limit:5 %}
     <li class="article-card">
       <a href="{{post.url}}" class="article-card-link">
-        <div id="article-container">
+        <div class="article-card-inner">
           <div id="article-img">
             {% if post.author %}
               {% assign author = post.author %}

@@ -3,6 +3,9 @@ layout: null
 permalink: /about/education.json
 sitemap: false
 show: true
+order: 1
+section_type: education
+section_title: Education
 items:
   - college_logo: ./education/University.png
     college_name: Unknown University (2019.03 ~ 2024.02)

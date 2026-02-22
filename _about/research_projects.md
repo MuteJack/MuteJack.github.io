@@ -3,6 +3,9 @@ layout: null
 permalink: /about/research_projects.json
 sitemap: false
 show: true
+order: 3
+section_type: project
+section_title: Research Projects
 items:
   - project_thumbnail: ./projects/research/UE_Highway.png
     project_title: ViLS Environment Development
