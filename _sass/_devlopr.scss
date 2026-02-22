@@ -616,7 +616,7 @@ header {
 }
 .project-img{
     width:150px;
-    height:100px;
+    height:auto;
 }
 .project_details{
     padding: 10px;
@@ -723,7 +723,7 @@ div.theme-embed-light, div.theme-embed-dark { margin-bottom: 1em; }
 #author_projects {
     .project-img {
         width: 300px;
-        height: 200px;
+        height: auto;
     }
     #project-card{
         margin-top:30px;
@@ -737,6 +737,7 @@ div.theme-embed-light, div.theme-embed-dark { margin-bottom: 1em; }
 .company-logo {
     width: 100px;
     height: 100px;
+    margin-left: 15px;
 }
 
 .author-profile-img {

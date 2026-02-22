@@ -142,7 +142,7 @@ layout: default
       {% for project in personal_projects.items %} {% if project.visibility
       == true %}
       <div class="row" id="project-card">
-        <div class="col-md-6">
+        <div class="col-md-auto">
           {% assign _p = project.project_thumbnail | slice: 0, 2 %}
           {% if _p == "./" %}
           <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
@@ -150,7 +150,7 @@ layout: default
           <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
           {% endif %}
         </div>
-        <div class="col-md-6 center">
+        <div class="col center">
           <h4 class="experience-title">{{ project.project_title }}</h4>
           <h6 class="experience-info">{{ project.project_info}}</h6>
           <p class="experience-desc">{{ project.project_description }}</p>
@@ -174,7 +174,7 @@ layout: default
       {% for project in research_projects.items %} {% if project.visibility
       == true %}
       <div class="row" id="project-card">
-        <div class="col-md-6">
+        <div class="col-md-auto">
           {% assign _p = project.project_thumbnail | slice: 0, 2 %}
           {% if _p == "./" %}
           <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
@@ -182,7 +182,7 @@ layout: default
           <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
           {% endif %}
         </div>
-        <div class="col-md-6 center">
+        <div class="col center">
           <h4 class="experience-title">{{ project.project_title }}</h4>
           <h6 class="experience-info">{{ project.project_info}}</h6>
           <p class="experience-desc">{{ project.project_description }}</p>
@@ -206,7 +206,7 @@ layout: default
       {% for project in work_projects.items %} {% if project.visibility
       == true %}
       <div class="row" id="project-card">
-        <div class="col-md-6">
+        <div class="col-md-auto">
           {% assign _p = project.project_thumbnail | slice: 0, 2 %}
           {% if _p == "./" %}
           <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
@@ -214,7 +214,7 @@ layout: default
           <img src="{{site.baseurl}}/assets/img/{{project.project_thumbnail}}" class="project-img" />
           {% endif %}
         </div>
-        <div class="col-md-6 center">
+        <div class="col center">
           <h4 class="experience-title">{{ project.project_title }}</h4>
           <h6 class="experience-info">{{ project.project_info}}</h6>
           <p class="experience-desc">{{ project.project_description }}</p>
