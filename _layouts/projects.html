@@ -4,7 +4,7 @@ layout: default
 </div>
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-10 m10">
+    <div class="col-11">
       {% assign sections = site.projects | where: "show", true | sort: "order" %}
       {% assign carousel_id = 0 %}
       {% for section in sections %}
@@ -16,8 +16,8 @@ layout: default
         {% if project.visibility == true %}
         <!-- Box 1: 중분류 -->
         <div class="pj-box-1">
-          <div class="row pj-mid-header">
-            <div class="col-md-auto">
+          <div class="pj-mid-header">
+            <div class="pj-mid-thumb">
               {% if project.project_thumbnail contains '://' %}
               <img src="{{ project.project_thumbnail }}" class="pj-mid-img" />
               {% elsif project.project_thumbnail | slice: 0, 1 == "/" %}
@@ -28,7 +28,7 @@ layout: default
               <img src="{{site.baseurl}}/assets/img/{{ project.project_thumbnail }}" class="pj-mid-img" />
               {% endif %}
             </div>
-            <div class="col pj-mid-content">
+            <div class="pj-mid-content">
               <h4 class="pj-mid-title">{{ project.project_title }}</h4>
               <p class="pj-mid-desc">{{ project.project_description }}</p>
               {% if project.project_url %}
@@ -41,9 +41,9 @@ layout: default
           {% for sub in project.sub_items %}
           <!-- Box 2: 소분류 -->
           <div class="pj-box-2">
-            <div class="row">
+            <div class="pj-box-2-row">
             <!-- Box 3-1: 메인 -->
-            <div class="col-md pj-box-3 pj-main">
+            <div class="pj-box-3 pj-main">
               {% if sub.thumbnail %}
               <div class="pj-main-img-wrap">
                 {% if sub.thumbnail contains '://' %}
@@ -58,12 +58,15 @@ layout: default
               </div>
               {% endif %}
               <h5 class="pj-main-title">{{ sub.title }}</h5>
+              {% if sub.subtitle %}
+              <p class="pj-main-subtitle">{{ sub.subtitle }}</p>
+              {% endif %}
               <p class="pj-main-desc">{{ sub.description }}</p>
             </div>
 
             {% if sub.gallery.size > 0 %}
             <!-- Box 3-2: 갤러리 (carousel) -->
-            <div class="col-md pj-box-3 pj-gallery">
+            <div class="pj-box-3 pj-gallery">
               <div id="pj-carousel-{{ carousel_id }}" class="carousel slide" data-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
                   {% for img in sub.gallery %}
@@ -93,7 +96,26 @@ layout: default
             </div>
             {% assign carousel_id = carousel_id | plus: 1 %}
             {% endif %}
-            </div><!-- /row -->
+            </div><!-- /pj-box-2-row -->
+
+            {% if sub.badges.size > 0 or sub.footer %}
+            <div class="pj-box-2-footer">
+              {% if sub.badges.size > 0 %}
+              <div class="pj-badges">
+                {% for badge in sub.badges %}
+                {% if badge.url %}
+                <a href="{{ badge.url }}" target="_blank" rel="noopener"><img src="{{ badge.img }}" alt="{{ badge.alt }}" /></a>
+                {% else %}
+                <img src="{{ badge.img }}" alt="{{ badge.alt }}" />
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endif %}
+              {% if sub.footer %}
+              <p class="pj-footer-text">{{ sub.footer }}</p>
+              {% endif %}
+            </div>
+            {% endif %}
           </div>
           <!-- /Box 2 -->
           {% endfor %}

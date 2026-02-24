@@ -752,14 +752,28 @@ figure.theme-embed-light embed, figure.theme-embed-dark embed { width: 100%; }
     background: var(--card-background-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
 }
 
+.pj-mid-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pj-mid-thumb {
+    flex-shrink: 0;
+}
+
 .pj-mid-img {
-    width: 240px;
+    width: 300px;
     height: auto;
     border-radius: 6px;
+}
+
+.pj-mid-content {
+    flex: 1;
 }
 
 .pj-mid-title {
@@ -775,22 +789,26 @@ figure.theme-embed-light embed, figure.theme-embed-dark embed { width: 100%; }
     background: var(--body-bg);
     border: 1px solid rgba(128, 128, 128, 0.4);
     border-radius: 6px;
-    padding: 15px;
+    padding: 6px;
     margin-top: 15px;
 }
 
+.pj-box-2-row {
+    display: flex;
+    gap: 15px;
+}
+
 .pj-box-3 {
-    padding: 10px;
+    padding: 0;
 }
 
-.pj-box-2 > .row > .pj-main {
-    flex: 0 0 35% !important;
-    max-width: 35% !important;
+.pj-main {
+    flex: 0 0 35%;
+    max-width: 35%;
 }
 
-.pj-box-2 > .row > .pj-gallery {
-    flex: 0 0 65% !important;
-    max-width: 65% !important;
+.pj-gallery {
+    flex: 0 0 calc(65% - 15px);
 }
 
 .pj-main-img-wrap {
@@ -799,22 +817,56 @@ figure.theme-embed-light embed, figure.theme-embed-dark embed { width: 100%; }
 }
 
 .pj-main-img {
-    width: 60%;
-    height: auto;
+    max-height: 200px;
+    width: auto;
+    max-width: 100%;
     border-radius: 4px;
 }
 
 .pj-main-title {
     font-weight: 600;
+    margin-bottom: 0.1rem;
+}
+
+.pj-main-subtitle {
+    color: var(--main-text-color);
+    opacity: 0.6;
+    margin-bottom: 0.3rem;
 }
 
 .pj-main-desc {
     color: var(--main-text-color);
 }
 
+.pj-box-2-footer {
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.pj-badges {
+    margin-bottom: 5px;
+
+    a, img {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    img {
+        height: 22px;
+    }
+}
+
+.pj-footer-text {
+    color: var(--main-text-color);
+    font-size: 0.9em;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
 .pj-gallery {
     border-left: 1px solid var(--border-color);
     padding-left: 15px;
+    flex: 1;
 
     .carousel {
         border-radius: 4px;
