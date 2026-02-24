@@ -28,10 +28,9 @@
   </div>
 
   <div class="card-body" itemprop="articleBody">
-    {% assign thumb_prefix = page.thumbnail | slice: 0, 2 %}
     <img
       class="card-img-top"
-      src="{% if thumb_prefix == './' %}{{site.baseurl}}{{ page.url }}{{ page.thumbnail | remove_first: './' }}{% else %}{{site.baseurl}}{{ page.thumbnail }}{% endif %}"
+      src="{% if page.thumbnail contains '://' %}{{ page.thumbnail }}{% elsif page.thumbnail | slice: 0, 2 == './' %}{{site.baseurl}}{{ page.url }}{{ page.thumbnail | remove_first: './' }}{% else %}{{site.baseurl}}{{ page.thumbnail }}{% endif %}"
       alt="{{ post.title }}"
     />
     <br />
