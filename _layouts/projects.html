@@ -1,0 +1,40 @@
+---
+layout: default
+---
+</div>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 m10">
+      {% assign sections = site.projects | where: "show", true | sort: "order" %}
+      {% for section in sections %}
+      <div class="card" id="projects-section">
+        <h1 class="card-title">{{ section.section_title }}</h1>
+        <hr />
+        {% for project in section.items %}
+        {% if project.visibility == true %}
+        <div class="row project-card">
+          <div class="col-md-auto project-thumbnail">
+            {% assign _p = project.project_thumbnail | slice: 0, 2 %}
+            {% if project.project_thumbnail contains '://' %}
+            <img src="{{ project.project_thumbnail }}" class="project-img" />
+            {% elsif _p == "./" %}
+            <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
+            {% else %}
+            <img src="{{site.baseurl}}/assets/img/{{ project.project_thumbnail }}" class="project-img" />
+            {% endif %}
+          </div>
+          <div class="col project-content">
+            <h4 class="project-title">{{ project.project_title }}</h4>
+            <p class="project-desc">{{ project.project_description }}</p>
+            {% if project.project_url %}
+            <p><a class="project-link" href="{{ project.project_url }}">{{ project.project_url }}</a></p>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

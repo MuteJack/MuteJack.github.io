@@ -14,6 +14,8 @@ urls:
       url: /about
     - text: Blog
       url: /blog
+    - text: Projects
+      url: /projects
     - text: Gallery
       url: /gallery
     # - text: Shop
@@ -78,6 +80,8 @@ collections:
   about:
     output: true
   gallery:
+    output: true
+  projects:
     output: true
 
 defaults:

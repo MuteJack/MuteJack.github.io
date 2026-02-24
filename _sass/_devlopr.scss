@@ -741,6 +741,31 @@ figure.theme-embed-light embed, figure.theme-embed-dark embed { width: 100%; }
     }
 }
 
+/* Projects Page */
+#projects-section {
+    hr {
+        margin-bottom: 30px;
+    }
+    .project-card {
+        margin-bottom: 30px;
+    }
+    .project-thumbnail {
+        text-align: center;
+    }
+    .project-img {
+        width: 300px;
+        height: auto;
+    }
+    .project-title {
+        font-weight: 600;
+    }
+    .project-desc {
+        color: var(--main-text-color);
+    }
+    .project-link {
+        color: var(--link-color);
+    }
+}
 
 .company-logo {
     width: 100px;
