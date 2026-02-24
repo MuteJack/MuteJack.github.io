@@ -6,35 +6,123 @@ layout: default
   <div class="row d-flex justify-content-center">
     <div class="col-10 m10">
       {% assign sections = site.projects | where: "show", true | sort: "order" %}
+      {% assign carousel_id = 0 %}
       {% for section in sections %}
-      <div class="card" id="projects-section">
+      <!-- Box 0: 대분류 -->
+      <div class="card pj-box-0">
         <h1 class="card-title">{{ section.section_title }}</h1>
         <hr />
         {% for project in section.items %}
         {% if project.visibility == true %}
-        <div class="row project-card">
-          <div class="col-md-auto project-thumbnail">
-            {% assign _p = project.project_thumbnail | slice: 0, 2 %}
-            {% if project.project_thumbnail contains '://' %}
-            <img src="{{ project.project_thumbnail }}" class="project-img" />
-            {% elsif _p == "./" %}
-            <img src="{{site.baseurl}}/about/{{ project.project_thumbnail | remove_first: './' }}" class="project-img" />
-            {% else %}
-            <img src="{{site.baseurl}}/assets/img/{{ project.project_thumbnail }}" class="project-img" />
-            {% endif %}
+        <!-- Box 1: 중분류 -->
+        <div class="pj-box-1">
+          <div class="row pj-mid-header">
+            <div class="col-md-auto">
+              {% if project.project_thumbnail contains '://' %}
+              <img src="{{ project.project_thumbnail }}" class="pj-mid-img" />
+              {% elsif project.project_thumbnail | slice: 0, 1 == "/" %}
+              <img src="{{site.baseurl}}{{ project.project_thumbnail }}" class="pj-mid-img" />
+              {% elsif project.project_thumbnail | slice: 0, 2 == "./" %}
+              <img src="{{ project.project_thumbnail }}" class="pj-mid-img" />
+              {% else %}
+              <img src="{{site.baseurl}}/assets/img/{{ project.project_thumbnail }}" class="pj-mid-img" />
+              {% endif %}
+            </div>
+            <div class="col pj-mid-content">
+              <h4 class="pj-mid-title">{{ project.project_title }}</h4>
+              <p class="pj-mid-desc">{{ project.project_description }}</p>
+              {% if project.project_url %}
+              <p><a class="project-link" href="{{ project.project_url }}">{{ project.project_url }}</a></p>
+              {% endif %}
+            </div>
           </div>
-          <div class="col project-content">
-            <h4 class="project-title">{{ project.project_title }}</h4>
-            <p class="project-desc">{{ project.project_description }}</p>
-            {% if project.project_url %}
-            <p><a class="project-link" href="{{ project.project_url }}">{{ project.project_url }}</a></p>
+
+          {% if project.sub_items.size > 0 %}
+          {% for sub in project.sub_items %}
+          <!-- Box 2: 소분류 -->
+          <div class="pj-box-2">
+            <div class="row">
+            <!-- Box 3-1: 메인 -->
+            <div class="col-md pj-box-3 pj-main">
+              {% if sub.thumbnail %}
+              <div class="pj-main-img-wrap">
+                {% if sub.thumbnail contains '://' %}
+                <img src="{{ sub.thumbnail }}" class="pj-main-img" />
+                {% elsif sub.thumbnail | slice: 0, 1 == "/" %}
+                <img src="{{site.baseurl}}{{ sub.thumbnail }}" class="pj-main-img" />
+                {% elsif sub.thumbnail | slice: 0, 2 == "./" %}
+                <img src="{{ sub.thumbnail }}" class="pj-main-img" />
+                {% else %}
+                <img src="{{site.baseurl}}/assets/img/{{ sub.thumbnail }}" class="pj-main-img" />
+                {% endif %}
+              </div>
+              {% endif %}
+              <h5 class="pj-main-title">{{ sub.title }}</h5>
+              <p class="pj-main-desc">{{ sub.description }}</p>
+            </div>
+
+            {% if sub.gallery.size > 0 %}
+            <!-- Box 3-2: 갤러리 (carousel) -->
+            <div class="col-md pj-box-3 pj-gallery">
+              <div id="pj-carousel-{{ carousel_id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner">
+                  {% for img in sub.gallery %}
+                  <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    {% if img contains '://' %}
+                    <img src="{{ img }}" class="d-block pj-gallery-img" />
+                    {% elsif img | slice: 0, 1 == "/" %}
+                    <img src="{{site.baseurl}}{{ img }}" class="d-block pj-gallery-img" />
+                    {% elsif img | slice: 0, 2 == "./" %}
+                    <img src="{{ img }}" class="d-block pj-gallery-img" />
+                    {% else %}
+                    <img src="{{site.baseurl}}/assets/img/{{ img }}" class="d-block pj-gallery-img" />
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#pj-carousel-{{ carousel_id }}" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#pj-carousel-{{ carousel_id }}" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+              <div class="pj-gallery-counter text-center">
+                <small class="text-muted" id="pj-carousel-counter-{{ carousel_id }}"></small>
+              </div>
+            </div>
+            {% assign carousel_id = carousel_id | plus: 1 %}
             {% endif %}
+            </div><!-- /row -->
           </div>
+          <!-- /Box 2 -->
+          {% endfor %}
+          {% endif %}
         </div>
+        <!-- /Box 1 -->
         {% endif %}
         {% endfor %}
       </div>
+      <!-- /Box 0 -->
       {% endfor %}
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  document.querySelectorAll('.carousel').forEach(function(el){
+    var id = el.id;
+    var items = el.querySelectorAll('.carousel-item');
+    var counter = document.getElementById(id.replace('pj-carousel','pj-carousel-counter'));
+    if(!counter || items.length === 0) return;
+    function update(){
+      var active = el.querySelector('.carousel-item.active');
+      var idx = Array.prototype.indexOf.call(items, active) + 1;
+      counter.textContent = idx + ' / ' + items.length;
+    }
+    update();
+    $(el).on('slid.bs.carousel', update);
+  });
+})();
+</script>

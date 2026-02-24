@@ -742,29 +742,100 @@ figure.theme-embed-light embed, figure.theme-embed-dark embed { width: 100%; }
 }
 
 /* Projects Page */
-#projects-section {
-    hr {
-        margin-bottom: 30px;
-    }
-    .project-card {
-        margin-bottom: 30px;
-    }
-    .project-thumbnail {
-        text-align: center;
-    }
-    .project-img {
-        width: 300px;
-        height: auto;
-    }
-    .project-title {
-        font-weight: 600;
-    }
-    .project-desc {
-        color: var(--main-text-color);
-    }
+.pj-box-0 {
     .project-link {
         color: var(--link-color);
     }
+}
+
+.pj-box-1 {
+    background: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.pj-mid-img {
+    width: 240px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.pj-mid-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.pj-mid-desc {
+    color: var(--main-text-color);
+}
+
+.pj-box-2 {
+    background: var(--body-bg);
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-radius: 6px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.pj-box-3 {
+    padding: 10px;
+}
+
+.pj-box-2 > .row > .pj-main {
+    flex: 0 0 35% !important;
+    max-width: 35% !important;
+}
+
+.pj-box-2 > .row > .pj-gallery {
+    flex: 0 0 65% !important;
+    max-width: 65% !important;
+}
+
+.pj-main-img-wrap {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pj-main-img {
+    width: 60%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.pj-main-title {
+    font-weight: 600;
+}
+
+.pj-main-desc {
+    color: var(--main-text-color);
+}
+
+.pj-gallery {
+    border-left: 1px solid var(--border-color);
+    padding-left: 15px;
+
+    .carousel {
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0,0,0,0.4);
+        border-radius: 50%;
+        padding: 10px;
+    }
+}
+
+.pj-gallery-img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.pj-gallery-counter {
+    margin-top: 8px;
 }
 
 .company-logo {

@@ -6,7 +6,7 @@ show: true
 order: 1
 section_title: Research Projects
 items:
-  - project_thumbnail: ./projects/research/UE_Highway.png
+  - project_thumbnail: /about/projects/research/UE_Highway.png
     project_title: ViLS Environment Development
     project_description: >-
       Developed a virtual driving environment based on UE4 and MATLAB/Simulink. <br>
@@ -16,8 +16,9 @@ items:
       and validate in developed HiLS/ViLS environments.
     project_url:
     visibility: true
+    sub_items: []
 
-  - project_thumbnail: ./projects/research/ViLS_XR_ProtoType.png
+  - project_thumbnail: /about/projects/research/ViLS_XR_ProtoType.png
     project_title: Mixed Reality based ViLS Environment Development
     project_description: >-
       Developed a virtual driving environment based on Unreal Engine 5.
@@ -25,4 +26,5 @@ items:
       Built cross-platform support for both PC and PCVR with Meta Quest 3.
     project_url:
     visibility: true
+    sub_items: []
 ---
