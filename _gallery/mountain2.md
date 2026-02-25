@@ -1,26 +1,14 @@
 ---
-title: Mountain2
-picture_path: mountain2
+title: Mountains2
+order: 2
+# picture_path: mountains2
 preview:
-  filename: 1
-  original: 1.jpg
-  sizes:
-  - 1.jpg
-  thumbnail: 1-thumbnail.jpg
+  thumbnail: ./mountain2/1-thumbnail.jpg
 pictures:
-- filename: 1
-  original: 1.jpg
-  sizes:
-  - 1.jpg
-  thumbnail: 1-thumbnail.jpg
-- filename: 2
-  original: 2.jpg
-  sizes:
-  - 2.jpg
-  thumbnail: 2-thumbnail.jpg
-- filename: 3
-  original: 3.jpg
-  sizes:
-  - 3.jpg
-  thumbnail: 3-thumbnail.jpg
+- original: ./mountain2/1.jpg
+  thumbnail: ./mountain2/1-thumbnail.jpg
+- original: ./mountain2/2.jpg
+  thumbnail: ./mountain2/2-thumbnail.jpg
+- original: ./mountain2/3.jpg
+  thumbnail: ./mountain2/3-thumbnail.jpg
 ---
